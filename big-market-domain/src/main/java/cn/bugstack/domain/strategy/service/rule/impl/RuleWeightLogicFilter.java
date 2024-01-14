@@ -66,6 +66,11 @@ public class RuleWeightLogicFilter implements ILogicFilter<RuleActionEntity.Raff
          *                 nextValue = analyticalSortedKeyValue;
          *             }
          *         }
+         * 星球伙伴 @慢慢来 ID 6267 提供
+         * Long nextValue = analyticalSortedKeys.stream()
+         *      .filter(key -> userScore >= key)
+         *      .max(Comparator.naturalOrder())
+         *      .orElse(null);
          */
         Long nextValue = analyticalSortedKeys.stream()
                 .sorted(Comparator.reverseOrder())
