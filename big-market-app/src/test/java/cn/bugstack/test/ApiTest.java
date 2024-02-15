@@ -1,12 +1,9 @@
 package cn.bugstack.test;
 
+import cn.bugstack.trigger.api.dto.RaffleAwardListRequestDTO;
+import com.alibaba.fastjson2.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.function.DoubleUnaryOperator;
 
 /**
  * @author Fuzhengwei bugstack.cn @小傅哥
@@ -20,10 +17,9 @@ public class ApiTest {
 
     @Test
     public void test() {
-        double x  = 0.0009d;
-
-        System.out.println(convert(x));
-
+        RaffleAwardListRequestDTO requestDTO = new RaffleAwardListRequestDTO();
+        requestDTO.setStrategyId(1000001L);
+        log.info(JSON.toJSONString(requestDTO));
     }
 
     private double convert(double min){
