@@ -10,6 +10,7 @@ import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.client.codec.BaseCodec;
 import org.redisson.client.codec.Codec;
+import org.redisson.client.handler.State;
 import org.redisson.client.protocol.Decoder;
 import org.redisson.client.protocol.Encoder;
 import org.redisson.codec.JsonJacksonCodec;
@@ -50,7 +51,9 @@ public class RedisClientConfig {
         ;
         Codec codec = new JsonJacksonCodec();
         config.setCodec(codec);
-        return Redisson.create(config);
+        RedissonClient client = Redisson.create(config);
+        //System.out.println(config.getCodec().getClass().getName());
+        return client;
     }
 
     static class RedisCodec extends BaseCodec {
@@ -70,7 +73,12 @@ public class RedisClientConfig {
             }
         };
 
-        private final Decoder<Object> decoder = (buf, state) -> JSON.parseObject(new ByteBufInputStream(buf), Object.class);
+        private final Decoder<Object> decoder = new Decoder<Object>() {
+            @Override
+            public Object decode(ByteBuf buf, State state) throws IOException {
+                return JSON.parseObject(new ByteBufInputStream(buf), Object.class);
+            }
+        };
 
         @Override
         public Decoder<Object> getValueDecoder() {
