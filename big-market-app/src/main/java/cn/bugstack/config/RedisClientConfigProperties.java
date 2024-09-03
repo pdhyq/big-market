@@ -17,7 +17,7 @@ public class RedisClientConfigProperties {
     /** 端口 */
     private int port;
     /** 账密 */
-    private String password;
+    private String password="123456";
     /** 设置连接池的大小，默认为64 */
     private int poolSize = 64;
     /** 设置连接池的最小空闲连接数，默认为10 */
