@@ -7,7 +7,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.redisson.Redisson;
 import org.redisson.api.RMap;
+import org.redisson.api.RedissonClient;
+import org.redisson.client.codec.Codec;
+import org.redisson.config.Config;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -104,5 +108,4 @@ public class StrategyTest {
             System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
         }
     }
-
 }
